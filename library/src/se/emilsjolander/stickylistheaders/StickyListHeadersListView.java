@@ -91,13 +91,17 @@ public class StickyListHeadersListView extends FrameLayout {
         this(context, attrs, 0);
     }
 
+    protected WrapperViewList createUnderlyingListView() {
+        return new WrapperViewList(getContext());
+    }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public StickyListHeadersListView(Context context, AttributeSet attrs,
                                      int defStyle) {
         super(context, attrs, defStyle);
 
         // Initialize the list
-        mList = new WrapperViewList(context);
+        mList = createUnderlyingListView();
         mDivider = mList.getDivider();
         mDividerHeight = mList.getDividerHeight();
 
